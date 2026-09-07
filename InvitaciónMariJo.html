@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Invitación</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            background: #000000;
+
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+
+        /* =========================================
+           CONTENEDOR DE LA INVITACIÓN
+        ========================================= */
+
+        .invitacion {
+            position: relative;
+
+            width: 100%;
+            max-width: 631px;
+
+            margin: 0 auto;
+        }
+
+
+        /* =========================================
+           IMAGEN
+        ========================================= */
+
+        .invitacion img {
+            width: 100%;
+            height: auto;
+
+            display: block;
+        }
+
+
+        /* =========================================
+           BOTONES INVISIBLES
+        ========================================= */
+
+        .boton {
+            position: absolute;
+
+            display: block;
+
+            cursor: pointer;
+
+            z-index: 10;
+
+            /* Invisible */
+            background: transparent;
+
+            border: none;
+
+            text-decoration: none;
+        }
+
+
+        /* =========================================
+           1. PRIMERA UBICACIÓN
+           "ABRIR UBICACIÓN"
+        ========================================= */
+
+        .ubicacion1 {
+
+            left: 35.5%;
+
+            top: 58.9%;
+
+            width: 30.5%;
+
+            height: 2.2%;
+        }
+
+
+        /* =========================================
+           2. SEGUNDA UBICACIÓN
+           "ABRIR UBICACIÓN"
+        ========================================= */
+
+        .ubicacion2 {
+
+            left: 35.5%;
+
+            top: 73.7%;
+
+            width: 30.5%;
+
+            height: 2.2%;
+        }
+
+
+        /* =========================================
+           3. MESA DE REGALOS
+           "IR A LIVERPOOL"
+        ========================================= */
+
+        .liverpool {
+
+            left: 35.5%;
+
+            top: 82.8%;
+
+            width: 30.5%;
+
+            height: 2.2%;
+        }
+
+
+        /* =========================================
+           4. CONFIRMAR ASISTENCIA
+        ========================================= */
+
+        .whatsapp {
+
+            left: 18%;
+
+            top: 86.5%;
+
+            width: 64%;
+
+            height: 2.8%;
+        }
+
+
+        /* =========================================
+           BOTÓN DE MÚSICA
+        ========================================= */
+
+        .boton-musica {
+
+            position: absolute;
+
+            top: 1.5%;
+
+            right: 4%;
+
+            width: 50px;
+
+            height: 50px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background: rgba(255, 255, 255, 0.85);
+
+            cursor: pointer;
+
+            z-index: 20;
+
+            font-size: 22px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+
+            transition: transform 0.2s;
+        }
+
+
+        .boton-musica:hover {
+
+            transform: scale(1.1);
+        }
+
+
+        /* =========================================
+           CELULAR
+        ========================================= */
+
+        @media (max-width: 600px) {
+
+            .boton-musica {
+
+                width: 42px;
+
+                height: 42px;
+
+                font-size: 18px;
+
+                top: 1.5%;
+
+                right: 4%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="invitacion">
+
+
+        <!-- =====================================
+             IMAGEN DE LA INVITACIÓN
+        ====================================== -->
+
+        <img
+            src="invitacion.png"
+            alt="Invitación">
+
+
+        <!-- =====================================
+             PRIMERA UBICACIÓN
+        ====================================== -->
+
+        <a
+            href="https://www.google.com/maps/"
+            target="_blank"
+            class="boton ubicacion1"
+            aria-label="Abrir primera ubicación">
+        </a>
+
+
+        <!-- =====================================
+             SEGUNDA UBICACIÓN
+        ====================================== -->
+
+        <a
+            href="https://www.google.com/maps/"
+            target="_blank"
+            class="boton ubicacion2"
+            aria-label="Abrir segunda ubicación">
+        </a>
+
+
+        <!-- =====================================
+             MESA DE REGALOS - LIVERPOOL
+        ====================================== -->
+
+        <a
+            href="https://www.liverpool.com.mx/"
+            target="_blank"
+            class="boton liverpool"
+            aria-label="Ir a Liverpool">
+        </a>
+
+
+        <!-- =====================================
+             CONFIRMAR ASISTENCIA - WHATSAPP
+        ====================================== -->
+
+        <a
+            href="https://wa.me/52XXXXXXXXXX?text=Hola,%20quiero%20confirmar%20mi%20asistencia."
+            target="_blank"
+            class="boton whatsapp"
+            aria-label="Confirmar asistencia por WhatsApp">
+        </a>
+
+
+        <!-- =====================================
+             BOTÓN DE MÚSICA
+        ====================================== -->
+
+        <button
+            class="boton-musica"
+            id="botonMusica"
+            onclick="reproducirMusica()">
+
+            🎵
+
+        </button>
+
+
+        <!-- =====================================
+             MÚSICA
+        ====================================== -->
+
+        <audio
+            id="musica"
+            loop>
+
+            <source
+                src="musica.mp3"
+                type="audio/mpeg">
+
+        </audio>
+
+
+    </div>
+
+
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================= -->
+
+    <script>
+
+        const musica = document.getElementById("musica");
+
+        const botonMusica = document.getElementById("botonMusica");
+
+
+        function reproducirMusica() {
+
+            if (musica.paused) {
+
+                musica.play();
+
+                botonMusica.innerHTML = "🔊";
+
+            }
+
+            else {
+
+                musica.pause();
+
+                botonMusica.innerHTML = "🔇";
+
+            }
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
